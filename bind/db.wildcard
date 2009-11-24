@@ -3,7 +3,7 @@
 ; BIND data file for local loopback interface
 ;
 $TTL	60
-@	IN	SOA	ns hostmaster. (
+@	IN	SOA	ns hostmaster (
 			      2		; Serial
 			 604800		; Refresh
 			  86400		; Retry
