@@ -1,0 +1,2 @@
+zone "fefe.de" { type master; file "/etc/bind/db.wildcard"; };
+

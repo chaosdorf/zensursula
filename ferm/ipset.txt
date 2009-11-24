@@ -1,0 +1,11 @@
+Instalation:
+apt-get install ipset netfilter-extensions-source
+m-a a-i netfilter-extensions-source
+
+ipset -N $name iphash # anlegen
+ipset -A $name $ip # hinzufügen
+ipset -D $name $ip # entfernen
+ipset -F $name # leeren
+ipset -L # ausgeben
+
+
