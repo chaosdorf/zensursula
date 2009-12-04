@@ -1,2 +1,6 @@
 zone "fefe.de" { type master; file "/etc/bind/db.wildcard"; };
-
+zone "4chan.org" { type master; file "/etc/bind/db.wildcard"; };
+zone "krautchan.net" { type master; file "/etc/bind/db.wildcard"; };
+zone "wikileaks.org" { type master; file "/etc/bind/db.wildcard"; };
+zone "ccc.de" { type master; file "/etc/bind/db.wildcard"; };
+zone "eff.org" { type master; file "/etc/bind/db.wildcard"; };
