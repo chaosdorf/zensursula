@@ -1,0 +1,11 @@
+Aufsetzen des Webinterface am 23.12.:
+
+ * Ja, die Lösung ist hässlich ;)
+ * Der Krempel in level{1..3}/ ist fast komplett ein Duplikat von intro/,
+   teilweise aber immerhin mit hardlinks
+ * Level 2 funzt gar nicht (Tor wird nicht zensiert)
+ * Level 2 und 3: Ich hab aus 'blog.fefe.de$' etc. 'blog.fefe.de' gemacht,
+   da sonst blog.fefe.de/index.html nicht zensiert wurde.
+   Allerdings werden jetzt auch z.B. blog.fefe.de/change.cgi (welches gebraucht
+   wird) zensiert, d.h. aus Level 2 und 3 kann aktuell nicht via Webinerface das
+   Level geändert werden
