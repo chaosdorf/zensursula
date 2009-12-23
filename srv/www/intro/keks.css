@@ -2,6 +2,7 @@ html {
 	background-color: #000000;
 	color: #ffffff;
 	font-family: Monospace;
+	text-align: center;
 }
 
 h1 {
@@ -9,8 +10,7 @@ h1 {
 }
 
 div.levelbox {
-	float: left;
-	margin: 1em;
+	margin-bottom: 3em;
 	text-align: center;
 }
 

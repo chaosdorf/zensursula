@@ -5,7 +5,6 @@ use warnings;
 use CGI::Carp 'fatalsToBrowser';
 use CGI ':standard';
 
-# Falls der Client noch kein Level hat, sollte "0" returnt werden
 sub get_level {
 	my $ip = shift;
 
@@ -25,6 +24,10 @@ sub get_level {
 
 sub set_level {
 	my ($ip, $level) = @_;
+	
+	if ($level !~ /^\d$/) {
+		die("Invalid level");
+	}
 
 	qx#/usr/include/zensurian/level_set $ip $level#;
 
@@ -37,7 +40,7 @@ sub set_level {
 }
 
 my $client_ip = $ENV{REMOTE_ADDR};
-my $client_level = get_level($client_ip);
+my $cgi = CGI->new();
 
 # Die Aufgaben sind noch etwas out of date ;)
 my $level = [
@@ -60,11 +63,8 @@ my $level = [
 ];
 
 
-# Auskommentiert wegen "$BROWSER =(perl index.cgi)" :>
-# (ln -s $PWD/keks.css /tmp/keks.css)
-#print "Content-type: application/xhtml+xml\n\n"
+print "Content-type: text/html\n\n";
 
-# stylesheet wird später mal /keks.css
 print <<'EOT';
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
 	"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
@@ -73,29 +73,40 @@ print <<'EOT';
 <head>
 	<title>Zensursulas Laptop</title>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-	<link rel="stylesheet" type="text/css" href="keks.css"/>
+	<link rel="stylesheet" type="text/css" href="/keks.css"/>
 </head>
 <body>
 <div>
 <h1>Zensursulas Laptop</h1>
-<p class="intro">[Intro-Text hier!]</p>
+<p class="intro"></p>
 </div>
+EOT
+
+if (defined $cgi->param('set_level')) {
+	set_level($client_ip, $cgi->param('set_level'));
+	print "<div>Level updated. Please restart your browser.</div>\n";
+}
+else {
+	print <<'EOT';
 <div class="levelswitch">
 <h1>Choose your censorship</h1>
 EOT
 
 
-for my $cur_level (1 .. $#{$level}) {
-	my $level_name = $level->[$cur_level]->{name};
+	for my $cur_level (1 .. $#{$level}) {
+		my $level_name = $level->[$cur_level]->{name};
+		my $level_task = $level->[$cur_level]->{task};
 
-	print "<div class=\"levelbox\">\n";
-	print "<a href=\"index.cgi?set_level=$cur_level\"><img src=\"/levelicon/$cur_level.png\" alt=\"$level_name\"/></a><br/>\n";
-	print "<p><a href=\"index.cgi?set_level=$cur_level\">Level $cur_level – $level_name</a></p>\n";
-	print "</div>\n";
-}
+		print "<div class=\"levelbox\">\n";
+		print "<a href=\"index.cgi?set_level=$cur_level\"><img src=\"/levelicon/$cur_level.png\" alt=\"$level_name\"/></a><br/>\n";
+		print "<p><a href=\"index.cgi?set_level=$cur_level\">Level $cur_level – $level_name</a></p>\n";
+		print "<p>$level_task</p>\n";
+		print "</div>\n";
+	}
 
-print <<'EOT';
+	print <<'EOT';
 </div>
 </body>
 </html>
 EOT
+}

@@ -1,0 +1,15 @@
+#!/bin/sh
+ip=$1
+level=level$2
+
+
+# FIXME: Geht eigentlich scoener
+for rlevel in 1 2 3; do
+	sudo /usr/sbin/ipset -D level$rlevel "$ip" 2> /dev/null
+done
+
+if [ "$level" = "level0" ]; then
+	exit 0
+fi
+
+sudo /usr/sbin/ipset -A "$level" "$ip"
