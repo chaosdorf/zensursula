@@ -8,7 +8,7 @@ use CGI ':standard';
 sub get_level {
 	my $ip = shift;
 
-#	my $level = qx#/usr/include/zensurian/level_get $ip#;
+#	my $level = qx#/usr/local/lib/zensurbox/level_get $ip#;
 	my $level = 0;
 
 	my $exitstatus = $? >> 8;
@@ -29,7 +29,7 @@ sub set_level {
 		die("Invalid level");
 	}
 
-	qx#/usr/include/zensurian/level_set $ip $level#;
+	qx#sudo /usr/local/lib/zensurbox/level_set $ip $level#;
 
 	my $exitstatus = $? >> 8;
 	if ($exitstatus != 0) {
