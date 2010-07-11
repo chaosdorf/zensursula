@@ -1,0 +1,5 @@
+CustomLog /var/log/apache2/access.log vhost_combined
+ServerName zensurbox
+Options ExecCGI FollowSymlinks
+ErrorDocument 404 /index.cgi
+AddHandler cgi-script .cgi
