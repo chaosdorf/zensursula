@@ -74,6 +74,7 @@ print <<'EOT';
 	<title>Zensursulas Laptop</title>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 	<link rel="stylesheet" type="text/css" href="/keks.css"/>
+	<base href="http://10.72.2.1" />
 </head>
 <body>
 <div>
