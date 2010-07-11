@@ -13,3 +13,6 @@ if [ "$level" = "level0" ]; then
 fi
 
 /usr/sbin/ipset -A "$level" "$ip"
+
+# This does not work with conntrack in Lenny, use a backport!
+conntrack -D -s "$ip"
