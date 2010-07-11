@@ -4,3 +4,8 @@ zone "krautchan.net" { type master; file "/etc/bind/db.wildcard"; };
 zone "wikileaks.org" { type master; file "/etc/bind/db.wildcard"; };
 zone "ccc.de" { type master; file "/etc/bind/db.wildcard"; };
 zone "eff.org" { type master; file "/etc/bind/db.wildcard"; };
+zone "archive.org" { type master; file "/etc/bind/db.wildcard"; };
+zone "googleusercontent.com" { type master; file "/etc/bind/db.wildcard"; };
+zone "bingj.com" { type master; file "/etc/bind/db.wildcard"; };
+
+
